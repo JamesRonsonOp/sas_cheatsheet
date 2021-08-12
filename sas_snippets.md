@@ -1,5 +1,5 @@
 
-COMBINE TABLES WITH SAS LANGUAGE
+### COMBINE TABLES WITH SAS LANGUAGE
 /* Perform and analyze Annual Revenue 
 
 
@@ -99,7 +99,7 @@ DMBS=TAB;
 
 _________
 
-/* Filtering through records in a table */
+### Filtering through records in a table
 
 /*
 DATA name_of_new_dataset;
@@ -185,7 +185,7 @@ ____________________________
   --String format gets $ at end of column name. for example: column_name$
   --number format gets nothing at the end of the column.: column_name
 ______________
-/* Print the last modified data table */
+### Print the last modified data table
 
 PROC PRINT;
 RUN;
@@ -195,7 +195,7 @@ RUN;
 PROC PRINT DATA=name_table;
 RUN;
 ______________
-/* SORTING */ 
+### SORTING 
 
 /*
 
@@ -226,7 +226,7 @@ RUN;
 
 
 ___________________
-/* ### IDENTIFYING COLUMN NAMES AN DTYPES ### */
+### IDENTIFYING COLUMN NAMES AN DTYPES ### 
 
 
 /* using SAS contents clause to get table info */
@@ -247,7 +247,7 @@ set sashelp.vcolumn;
 where libname = 'UDEMY1' and memname = 'PURCHASE';
 run;
 _______________
-/* ### CONTENT REPORTS AND SUMMARY STATISTICS ### */
+### CONTENT REPORTS AND SUMMARY STATISTICS
 
 /* THIS IMPORTS PRACTICE DATASET */
 
@@ -257,31 +257,31 @@ RUN;
 
 /* ----------------------------------------- */
 
-/* ### CREATING A DATA CONTENTS REPORT ### */
+##### CREATING A DATA CONTENTS REPORT ###
 
 /* comp is the name of the table */
 
 PROC CONTENTS DATA=comp;run;
 
 
-/* ### SUMMARY STATISTICS FOR WHOLE TABLE ### */
+##### SUMMARY STATISTICS FOR WHOLE TABLE ###
 
 PROC MEANS DATA=comp;RUN;
 
 
-/* ### SUMMARY STATISTICS FOR JUST ONE VARIABLE ### */
+##### SUMMARY STATISTICS FOR JUST ONE VARIABLE ###
 
 PROC MEANS DATA=comp;
 VAR HIGH;
 RUN; 
 
-/* ### SUMMARY STATISTICS WITH TAIL DISTRIBUTIONS ### */
+##### SUMMARY STATISTICS WITH TAIL DISTRIBUTIONS 
 
 PROC MEANS DATA=comp MEAN mEDIAN STD P5 P95 MIN MAX;
 VAR HIGH;
 RUN;
 _____________
-/* Data Steps v. Proc Steps */
+### Data Steps v. Proc Steps
 
 /* DATA STEPS
 
@@ -295,21 +295,15 @@ PROC STEPS
 - Perform specific analysis or function
 - produce results or report
 ________________
-/* ### REPLACEMENT FOR LIMIT CLAUSE IN PROC SQL ### */
+### REPLACEMENT FOR LIMIT CLAUSE IN PROC SQL
 
 /* You can limit the number of rows processed and returned by using the INOBS= and OUTOBS= options in PROC SQL.
-
- 
 
 INOBS= restricts the number of rows that PROC SQL retrieves from any single data source.
 
 OUTOBS= restricts the number of rows that PROC SQL includes in the output.
 
- 
-
 So if you want to consider all rows in your query but limit the number returned, use OUTOBS=.
-
- 
 
 If the source table is SAS then I would use a data step.  Examples follow. */
 
@@ -325,7 +319,7 @@ proc sql inobs=1;
 quit;
 _________________
 
-/* Linear Regression */ 
+### Linear Regression 
 
 /* ---SIMPLE LINEAR REGRESSION---
 
@@ -470,7 +464,7 @@ For each quare a house has, the rental rate will increase by 0.000008 percent on
 
 /* STEP 5: Produce Graph of Predicted Value vs Real Value */
 ______________
-PROC SQL 
+### PROC SQL 
 
 PROC SQL;
 
@@ -485,7 +479,7 @@ QUIT;
 
 PROC PRINT DATA=WORK.QUERY; RUN;
 __________
-SAS MACRO
+### SAS MACRO
 
 %MACRO printTable(table);
 
@@ -757,3 +751,7 @@ mvar =
   %put &string should be A STRING TO UPCASE;
   
   
+_______________--
+### Articles and Resources
+
+[UIA pdf on Macros]('https://myweb.uiowa.edu/pbreheny/misc/macros.pdf')
