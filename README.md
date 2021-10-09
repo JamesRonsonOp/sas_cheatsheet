@@ -87,3 +87,75 @@ or all variable names:
 One way to make iterative DO loops even more powerful is to place one DO loop inside of another. Putting a DO loop within another DO loop is called nesting. We'll take a look at a few examples here.
 
 
+# TEXT/STRING FUNCTIONS
+
+### Length
+
+* `LENGTH(string)` The LENGTH function returns a length in bytes. The KLENGTH function returns a length in a character-based unit.
+* `LENGTHN(string)` The LENGTH and LENGTHN functions return the same value for non-blank character strings. LENGTH returns a value of 1 for blank character strings, whereas LENGTHN returns a value of 0.
+* `LENGTHC(string)` The LENGTH function returns the length of a character string, excluding trailing blanks, whereas the LENGTHC function returns the length of a character string, including trailing blanks.
+* `LENGTHM(string)` The LENGTH function returns the length of a character string, excluding trailing blanks, whereas the LENGTHM function returns the amount of memory in bytes that is allocated for a character string.
+
+### Concatenation
+**NOTE:** The CAT* functions and concatenation operator can combine character and numeric variables into a single (larger) character value.  The process implicitly converts a numeric value into a character and doesn't generate a SAS note or warning, unlike some of the other conversion methods.  (For example, when you assign a numeric value to a character variable.)  
+
+* `||` Inline string concatenation operator. This concatenation operator is convenient, but doesn't provide the same flexibility as the CAT* functions to control how white space is trimmed.
+
+* `CAT(item-1 <, …, item-n>)` Does not remove leading or trailing blanks and returns a concatenated character string. You can control how it handles white space though. 
+
+* `CATS` The CATS function combines values by first removing any leading or trailing blank spaces, then returns the concatenated string.  For example: 
+```
+data report(keep=report);
+ set sashelp.class;
+ report = cats(name, ', Age:',age);
+run;
+```
+OUTPUT: `Alfred, Age:14`
+
+* `CATX`Use CATX function to create a character string that combines multiple values and separates them with a delimiter of one or more characters.  Like the CATS function, CATX trims leading and trailing blanks before combining the values.  For example:
+```
+data csv (keep=extract);
+ set sashelp.class;
+ extract = catx(',',name,age,weight,height);
+run;
+```
+OUTPUT: `Alfred,14,112.5,69`
+
+* Create a comma-seperated list of all variables. I take the value from each column and separate them by commas.
+```data all (keep=full);
+ set sashelp.class;
+ full = catx(',',of name--weight);
+run;
+```
+ 
+* Return only character variables separated by a special symbol. 
+```
+data char (keep=text);
+ set sashelp.class;
+ text = catx('|',of name-character-weight);
+run;
+```
+
+### Align Text
+
+`LEFT`
+`RIGHT`
+
+### Casing
+
+`UPCASE`
+`LOWCASE`
+
+### Removing Characters
+
+`TRIM`
+`COMPRESS`
+
+### Indexing
+
+`INDEX` -Finds substrings
+`SUBSTR` -Extracts substrings
+
+### Splitting Strings
+
+`SCAN`
